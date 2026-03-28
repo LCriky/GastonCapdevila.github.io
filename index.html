@@ -28,7 +28,7 @@
             overflow: hidden; /* Elimina el scroll principal */
         }
 
-        /* Contenedor Principal con la NUEVA Imagen de Fondo */
+        /* Contenedor Principal con la Imagen de Fondo */
         .main-container {
             position: relative;
             height: 100vh;
@@ -37,7 +37,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* NUEVA IMAGEN DE FONDO APLICADA */
+            /* IMAGEN DE FONDO APLICADA */
             background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat;
             background-size: cover; /* Cubre todo sin deformar */
             background-position: right center; /* Ajuste para que la cara quede a la derecha en PC */
@@ -108,13 +108,13 @@
         .social-links img {
             width: 26px;
             height: 26px;
-            filter: invert(1); /* Convierte iconos negros a blancos */
+            filter: drop-shadow(0 0 0 white); /* --- CAMBIO ESPECÍFICO PARA HACER ICONOS BLANCOS --- */
         }
 
         /* Animación de Redes (Hover) */
         .social-links a:hover {
             transform: translateY(-5px) scale(1.1);
-            filter: invert(1) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8)); /* Sombra blanca más intensa al pasar el mouse */
         }
 
         /* Sección Bio (About) - Corta y directa */
