@@ -2,182 +2,218 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tony Cade | DJ & Producer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
             --text-color: #ffffff;
             --accent-color: #ffffff;
+            --overlay-bg: rgba(0, 0, 0, 0.65); /* Fondo oscuro translúcido para texto */
         }
 
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden; /* Elimina el scroll principal */
         }
 
-        /* Redes Sociales Header */
-        .social-header {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            background: rgba(0,0,0,0.8);
-            position: fixed; /* Mantiene la barra fija arriba, opcional */
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .social-header a {
-            display: inline-block; /* Necesario para que la transformación funcione */
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        }
-
-        .social-header img {
-            width: 24px;
-            height: 24px;
-            display: block; /* Elimina espacio inferior no deseado */
-        }
-
-        /* --- NUEVAS ANIMACIONES PARA LOS ENLACES (HOVER) --- */
-        
-        /* Efecto 1: Aumento de tamaño y brillo al pasar el mouse */
-        .social-header a:hover {
-            transform: scale(1.2) translateY(-5px); /* Agranda y sube un poco */
-            opacity: 0.8; /* Efecto de brillo/atenuación */
-            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); /* Sombra suave blanca */
-        }
-
-        /* Asegura una animación suave al quitar el mouse */
-        .social-header a:not(:hover) {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-            filter: none;
-        }
-
-        /* Hero Section */
-        .hero {
+        /* Contenedor Principal con Imagen de Fondo Centrada */
+        .main-container {
             position: relative;
-            height: 80vh;
+            height: 100vh;
+            width: 100%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            text-align: center;
-            background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat center center/cover;
-            padding-top: 60px; /* Compensa la barra fija */
+            align-items: center;
+            /* IMAGEN DE FONDO CENTRADA */
+            background: url('https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg') no-repeat center center;
+            background-size: cover; /* Cubre todo sin deformar */
+            transition: background-position 0.1s ease-out; /* Para efecto mousemove suave */
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            letter-spacing: 10px;
-            margin: 0;
+        /* Superposición oscura para legibilidad del texto */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Capa oscura general */
+            z-index: 1;
+        }
+
+        /* Contenedor de Información Flotante Profesional */
+        .content-card {
+            position: relative;
+            z-index: 2; /* Por encima de la foto y overlay */
+            width: 90%;
+            max-width: 600px;
+            background: var(--overlay-bg);
+            padding: 40px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px); /* Desenfoque de fondo premium */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Header / Logo */
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .header p.subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ccc;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-top: 10px;
-        }
-
-        /* About Section */
-        .about-section {
+        /* Redes Sociales dentro de la tarjeta */
+        .social-links {
             display: flex;
-            flex-wrap: wrap;
-            padding: 80px 10%;
-            align-items: center;
-            gap: 50px;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 2px;
-            filter: grayscale(20%);
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            text-transform: lowercase;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--accent-color);
+        .social-links a {
             display: inline-block;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .about-text p {
-            line-height: 1.8;
-            font-size: 1rem;
-            color: #ccc;
+        .social-links img {
+            width: 26px;
+            height: 26px;
+            filter: invert(1); /* Convierte iconos negros a blancos */
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            border-top: 1px solid #222;
+        /* Animación de Redes (Hover) */
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            filter: invert(1) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
+        }
+
+        /* Sección Bio (About) - Corta y directa */
+        .bio-section h2 {
+            font-size: 1.2rem;
+            text-transform: lowercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+
+        .bio-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+            color: #ddd;
+            max-height: 25vh; /* Limita altura en pantallas pequeñas */
+            overflow-y: auto; /* Scroll interno si es necesario */
+            padding-right: 10px;
+        }
+
+        .bio-content p {
+            margin-bottom: 15px;
+        }
+
+        /* Estilo del scroll interno */
+        .bio-content::-webkit-scrollbar { width: 3px; }
+        .bio-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .bio-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+
+        /* Footer dentro de la tarjeta */
+        .card-footer {
+            margin-top: 35px;
+            font-size: 0.75rem;
             letter-spacing: 5px;
-            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
         }
 
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .about-section { padding: 40px 5%; }
-            .social-header { padding: 15px; gap: 15px; }
-            .social-header img { width: 20px; height: 20px; }
+            .content-card { padding: 30px 20px; }
+            .header h1 { font-size: 1.8rem; letter-spacing: 8px; }
+            .header p.subtitle { font-size: 0.8rem; letter-spacing: 3px; }
+            .bio-content { font-size: 0.9rem; max-height: 35vh; }
+        }
+
+        @media (max-height: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .social-links { margin-bottom: 15px; }
+            .bio-content { max-height: 20vh; }
+            .card-footer { margin-top: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="social-header">
-        <a href="https://www.instagram.com/tony_cade23/" target="_blank"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
-        <a href="https://soundcloud.com/tonycade" target="_blank"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
-        <a href="https://www.youtube.com/@TONYCADE23" target="_blank"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
-    </header>
+    <div class="main-container" id="scene">
+        <div class="overlay"></div> <div class="content-card">
+            <div class="header">
+                <h1>TONY CADE</h1>
+                <p class="subtitle">DJ / PRODUCER / ARG</p>
+            </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>TONY CADE</h1>
-            <p>DJ / PRODUCER FROM ROSARIO, ARGENTINA</p>
-        </div>
-    </section>
+            <div class="social-links">
+                <a href="https://www.instagram.com/tony_cade23/" target="_blank" title="Instagram"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
+                <a href="https://soundcloud.com/tonycade" target="_blank" title="SoundCloud"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
+                <a href="https://www.youtube.com/@TONYCADE23" target="_blank" title="YouTube"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
+            </div>
 
-    <section class="about-section">
-        <div class="about-image">
-            <img src="https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg" alt="Tony Cade">
-        </div>
-        <div class="about-text">
-            <h2>about me</h2>
-            <p>
-                Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del tech house y el techno, caracterizado por sets enérgicos, groove marcado y una selección cuidada que conecta directamente con la pista. Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.
-            </p>
-            <p>
-                Influenciado por artistas como Mochakk, Wade y Latmun, Tony Cade construye sesiones dinámicas donde la progresión y la lectura del público son clave. Su identidad sonora se apoya en bajos potentes, percusiones precisas y transiciones fluidas que mantienen la tensión y el flow constante.
-            </p>
-            <p>
-                Con experiencia en eventos locales, busca consolidarse dentro de la escena electrónica, llevando su propuesta a nuevos espacios y audiencias, siempre con el objetivo de generar una experiencia auténtica y memorable en cada presentación.
-            </p>
-        </div>
-    </section>
+            <div class="bio-section">
+                <h2>about me</h2>
+                <div class="bio-content">
+                    <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos, groove marcado y una selección cuidada.</p>
+                    <p>Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable. Construye sesiones dinámicas donde la progresión y la lectura del público son clave.</p>
+                </div>
+            </div>
 
-    <footer>
-        TONYCADE.COM
-    </footer>
+            <div class="card-footer">
+                TONYCADE.COM
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scene = document.getElementById('scene');
+        
+        // Solo aplicar en dispositivos no táctiles (con mouse)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            scene.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                // Mueve el fondo muy suavemente en dirección opuesta (efecto depth)
+                const moveX = (x - 0.5) * 15; // Ajustar el 15 para más/menos movimiento
+                const moveY = (y - 0.5) * 15;
+                
+                scene.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+            });
+        }
+    </script>
 
 </body>
 </html>
