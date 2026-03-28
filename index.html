@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tony Cade | DJ & Producer</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #000000;
-            --text-white: #ffffff;
-            --text-grey: #b0b0b0;
-            --accent: #ffffff;
+            --bg-color: #000a12;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            --overlay-bg: rgba(0, 10, 18, 0.85);
         }
 
         * {
@@ -20,180 +20,200 @@
         }
 
         body, html {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
+            height: 100%;
+            width: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* FONDO QUE OCUPA TODA LA PANTALLA */
-        .page-bg {
-            position: fixed;
+        .main-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg') no-repeat;
+            background-size: cover;
+            background-position: center center;
+            transition: background-position 0.1s ease-out;
+        }
+
+        .overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Asegura que esté por debajo de todo */
-        }
-
-        .page-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Recorta y estira para llenar la pantalla */
-            opacity: 0.15; /* Sutil para no opacar el contenido principal */
-            filter: grayscale(100%) contrast(1.2);
-        }
-
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
-        /* CABECERA */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .header-logo {
-            width: 250px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        /* LAYOUT PERFIL */
-        .profile-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-            background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para leer mejor */
-            padding: 40px;
+        /* Tarjeta principal con Flexbox */
+        .content-card {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 900px; /* Aumentado para acomodar la imagen */
+            background: var(--overlay-bg);
             border-radius: 4px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: flex; /* Flexbox para poner imagen a la izquierda */
+            overflow: hidden;
+            margin: auto;
         }
 
-        .profile-img-box img {
-            width: 100%;
-            border-radius: 2px;
+        /* Contenedor de la Imagen Izquierda */
+        .card-image {
+            flex: 0 0 40%; /* Ocupa el 40% del ancho */
+            background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg/v1/fill/w_980,h_917,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat center center;
+            background-size: cover;
             filter: grayscale(20%);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* TEXTO BIO */
-        .bio-info h2 {
-            font-size: 0.75rem;
+        /* Contenedor de Información Derecha */
+        .card-info {
+            flex: 1;
+            padding: 40px;
+            text-align: left; /* Alineación a la izquierda para mejor lectura */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
             letter-spacing: 8px;
             text-transform: uppercase;
-            color: var(--text-grey);
-            margin-bottom: 40px;
+            margin-bottom: 5px;
         }
 
-        .bio-info p {
-            font-size: 0.95rem;
-            line-height: 1.8;
+        .header p.subtitle {
+            font-size: 0.8rem;
             font-weight: 300;
+            letter-spacing: 3px;
+            color: #b0bec5;
             margin-bottom: 20px;
-            color: #e0e0e0;
-            text-align: justify;
-        }
-
-        /* SOCIAL LINKS */
-        .social-nav {
-            margin-top: 50px;
-            display: flex;
-            gap: 40px;
-            justify-content: flex-start;
-        }
-
-        .social-nav a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
             text-transform: uppercase;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 8px;
-            transition: 0.3s;
         }
 
-        .social-nav a:hover {
-            border-bottom-color: var(--text-white);
-            letter-spacing: 5px;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .footer-logo {
-            width: 140px;
-            opacity: 0.4;
+        .social-links {
+            display: flex;
+            gap: 20px;
             margin-bottom: 25px;
         }
 
-        .copyright {
-            font-size: 0.6rem;
-            letter-spacing: 5px;
-            color: #444;
+        .social-links img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5));
+        }
+
+        .bio-section h2 {
+            font-size: 0.9rem;
             text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #eceff1;
+        }
+
+        .bio-content {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #cfd8dc;
+        }
+
+        .card-footer {
+            margin-top: 25px;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            color: #78909c;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
         }
 
         /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .profile-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 20px;
+        @media (max-width: 850px) {
+            .content-card {
+                flex-direction: column; /* Imagen arriba, texto abajo en móviles */
+                max-width: 450px;
+                max-height: 90vh;
+                overflow-y: auto;
             }
-            .main-content { padding-top: 40px; }
-            .social-nav { justify-content: center; }
+            .card-image {
+                flex: 0 0 300px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .card-info {
+                padding: 30px;
+                text-align: center;
+            }
+            .social-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-bg">
-        <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="Background">
+    <div class="main-container" id="scene">
+        <div class="overlay"></div> 
+        
+        <div class="content-card">
+            <div class="card-image"></div>
+
+            <div class="card-info">
+                <div class="header">
+                    <h1>TONY CADE</h1>
+                    <p class="subtitle">DJ / PRODUCER / ARG</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/tony_cade23/" target="_blank" title="Instagram"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
+                    <a href="https://soundcloud.com/tonycade" target="_blank" title="SoundCloud"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
+                    <a href="https://www.youtube.com/@TONYCADE23" target="_blank" title="YouTube"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
+                </div>
+
+                <div class="bio-section">
+                    <h2>about me</h2>
+                    <div class="bio-content">
+                        <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos y groove marcado.</p>
+                        <p>Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    TONYCADE.COM
+                </div>
+            </div>
+        </div>
     </div>
 
-    <main class="main-content">
-        <header>
-            <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="Logo" class="header-logo" style="display:none;">
-            <h1 style="letter-spacing: 15px; font-weight: 700; text-transform: uppercase;">Tony Cade</h1>
-        </header>
-
-        <section class="profile-container">
-            <div class="profile-img-box">
-                <img src="https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg" alt="Tony Cade Profile">
-            </div>
-
-            <div class="bio-info">
-                <h2>Bio / Profile</h2>
-                <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos, groove marcado y una selección cuidada que conecta directamente con la pista. Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
-                <p>Influenciado por artistas como Mochakk, Wade y Latmun, Tony Cade construye sesiones dinámicas donde la progresión y la lectura del público son clave. Su identidad sonora se apoya en bajos potentes, percusiones precisas y transiciones fluidas que mantienen la tensión y el flow constante.</p>
-                <p>Con experiencia en eventos locales, busca consolidarse dentro de la escena electrónica, llevando su propuesta a nuevos espacios y audiencias, siempre con el objetivo de generar una experiencia auténtica y memorable en cada presentación.</p>
-                
-                <nav class="social-nav">
-                    <a href="https://www.instagram.com/tony_cade23/" target="_blank">Instagram</a>
-                    <a href="https://soundcloud.com/tonycade" target="_blank">Soundcloud</a>
-                    <a href="https://www.youtube.com/@TONYCADE23" target="_blank">YouTube</a>
-                </nav>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <img src="https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg" alt="Equipment Logo" class="footer-logo">
-        <div class="copyright">Tony Cade &copy; 2026 | Rosario, ARG</div>
-    </footer>
+    <script>
+        const scene = document.getElementById('scene');
+        if (window.matchMedia("(pointer: fine)").matches && window.innerWidth > 992) {
+            scene.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                const moveX = (x - 0.5) * 15; 
+                const moveY = (y - 0.5) * 15;
+                scene.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+            });
+        }
+    </script>
 
 </body>
 </html>
