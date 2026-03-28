@@ -51,37 +51,34 @@
             z-index: 1;
         }
 
-        /* Tarjeta principal con Flexbox */
         .content-card {
             position: relative;
             z-index: 2;
             width: 90%;
-            max-width: 900px; /* Aumentado para acomodar la imagen */
+            max-width: 900px;
             background: var(--overlay-bg);
             border-radius: 4px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            display: flex; /* Flexbox para poner imagen a la izquierda */
+            display: flex;
             overflow: hidden;
             margin: auto;
         }
 
-        /* Contenedor de la Imagen Izquierda */
         .card-image {
-            flex: 0 0 40%; /* Ocupa el 40% del ancho */
+            flex: 0 0 40%;
             background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg/v1/fill/w_980,h_917,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat center center;
             background-size: cover;
             filter: grayscale(20%);
             border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Contenedor de Información Derecha */
         .card-info {
             flex: 1;
             padding: 40px;
-            text-align: left; /* Alineación a la izquierda para mejor lectura */
+            text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -104,21 +101,41 @@
             text-transform: uppercase;
         }
 
+        /* --- REDES SOCIALES CON ANIMACIÓN --- */
         .social-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 25px;
         }
 
-        .social-links img {
-            width: 22px;
-            height: 22px;
-            filter: brightness(0) invert(1);
+        .social-links a {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .social-links img {
+            width: 28px; /* Agrandados */
+            height: 28px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        /* Animación de entrada y pulso suave */
+        @keyframes softPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .social-links a {
+            animation: softPulse 3s infinite ease-in-out;
+        }
+
+        /* Efecto al pasar el mouse */
         .social-links a:hover {
-            transform: translateY(-3px);
-            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5));
+            transform: scale(1.3) rotate(5deg);
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
+            animation: none; /* Se detiene el pulso al interactuar */
         }
 
         .bio-section h2 {
@@ -146,10 +163,9 @@
             padding-top: 15px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 850px) {
             .content-card {
-                flex-direction: column; /* Imagen arriba, texto abajo en móviles */
+                flex-direction: column;
                 max-width: 450px;
                 max-height: 90vh;
                 overflow-y: auto;
@@ -182,16 +198,26 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/tony_cade23/" target="_blank" title="Instagram"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
-                    <a href="https://soundcloud.com/tonycade" target="_blank" title="SoundCloud"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
-                    <a href="https://www.youtube.com/@TONYCADE23" target="_blank" title="YouTube"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
+                    <a href="https://www.instagram.com/tony_cade23/" target="_blank" title="Instagram">
+                        <img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram">
+                    </a>
+                    <a href="https://soundcloud.com/tonycade" target="_blank" title="SoundCloud">
+                        <img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud">
+                    </a>
+                    <a href="https://open.spotify.com/user/thekiller1292" target="_blank" title="Spotify">
+                        <img src="https://static.wixstatic.com/media/e18eec328e7446079b7c7cef09488b18.png" alt="Spotify">
+                    </a>
+                    <a href="https://www.youtube.com/@TONYCADE23" target="_blank" title="YouTube">
+                        <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube">
+                    </a>
                 </div>
 
                 <div class="bio-section">
                     <h2>about me</h2>
                     <div class="bio-content">
-                        <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos y groove marcado.</p>
-                        <p>Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
+                        <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del tech house y el techno, caracterizado por sets enérgicos, groove marcado y una selección cuidada que conecta directamente con la pista. Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.<br/><br/>
+Influenciado por artistas como Mochakk, Wade y Latmun, Tony Cade construye sesiones dinámicas donde la progresión y la lectura del público son clave. Su identidad sonora se apoya en bajos potentes, percusiones precisas y transiciones fluidas que mantienen la tensión y el flow constante.<br/><br/>
+Con experiencia en eventos locales, busca consolidarse dentro de la escena electrónica, llevando su propuesta a nuevos espacios y audiencias, siempre con el objetivo de generar una experiencia auténtica y memorable en cada presentación.</p>
                     </div>
                 </div>
 
