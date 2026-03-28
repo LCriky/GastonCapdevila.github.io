@@ -7,10 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000a12; /* Un negro azulado muy oscuro para combinar con la imagen */
+            --bg-color: #000a12;
             --text-color: #ffffff;
-            --accent-color: #00bcd4; /* Un cian sutil para detalles, si se desea */
-            --overlay-bg: rgba(0, 10, 18, 0.75); /* Fondo de tarjeta oscuro y translúcido */
+            --overlay-bg: rgba(0, 10, 18, 0.75);
         }
 
         * {
@@ -25,10 +24,9 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden; /* Elimina el scroll principal */
+            overflow: hidden;
         }
 
-        /* Contenedor Principal con la Imagen de Fondo */
         .main-container {
             position: relative;
             height: 100vh;
@@ -37,62 +35,65 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* IMAGEN DE FONDO APLICADA */
             background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat;
-            background-size: cover; /* Cubre todo sin deformar */
-            background-position: right center; /* Ajuste para que la cara quede a la derecha en PC */
-            transition: background-position 0.1s ease-out; /* Para efecto mousemove suave */
+            background-size: cover;
+            background-position: right center;
+            transition: background-position 0.1s ease-out;
         }
 
-        /* Superposición oscura para legibilidad del texto */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.3); /* Capa oscura general sutil */
+            background-color: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
 
-        /* Contenedor de Información Flotante Profesional */
         .content-card {
             position: relative;
-            z-index: 2; /* Por encima de la foto y overlay */
+            z-index: 2;
             width: 90%;
-            max-width: 550px; /* Un poco más estrecha para no tapar toda la foto */
+            max-width: 700px;
             background: var(--overlay-bg);
             padding: 40px;
             border-radius: 4px;
-            backdrop-filter: blur(15px); /* Desenfoque de fondo premium más intenso */
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            /* Centrado en PC, puede ajustarse a la izquierda si se prefiere */
-            margin-right: auto; 
-            margin-left: 10%; /* Empuja la tarjeta a la izquierda en PC */
+            margin-right: auto;
+            margin-left: 10%;
         }
 
-        /* Header / Logo */
         .header h1 {
             font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: 10px;
             text-transform: uppercase;
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 img {
+            height: 30px;
+            width: auto;
         }
 
         .header p.subtitle {
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 3px;
-            color: #b0bec5; /* Gris azulado claro */
+            color: #b0bec5;
             margin-bottom: 25px;
             text-transform: uppercase;
         }
 
-        /* Redes Sociales dentro de la tarjeta */
         .social-links {
             display: flex;
             justify-content: center;
@@ -108,16 +109,14 @@
         .social-links img {
             width: 26px;
             height: 26px;
-            filter: drop-shadow(0 0 0 white); /* --- CAMBIO ESPECÍFICO PARA HACER ICONOS BLANCOS --- */
+            filter: drop-shadow(0 0 0 white);
         }
 
-        /* Animación de Redes (Hover) */
         .social-links a:hover {
             transform: translateY(-5px) scale(1.1);
-            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8)); /* Sombra blanca más intensa al pasar el mouse */
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
         }
 
-        /* Sección Bio (About) - Corta y directa */
         .bio-section h2 {
             font-size: 1.1rem;
             text-transform: lowercase;
@@ -131,22 +130,30 @@
             font-size: 0.9rem;
             line-height: 1.7;
             font-weight: 300;
-            color: #cfd8dc; /* Gris azulado muy claro */
-            max-height: 25vh; /* Limita altura en pantallas pequeñas */
-            overflow-y: auto; /* Scroll interno si es necesario */
+            color: #cfd8dc;
+            max-height: 30vh;
+            overflow-y: auto;
             padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
         }
 
         .bio-content p {
-            margin-bottom: 15px;
+            margin-bottom: 0;
         }
 
-        /* Estilo del scroll interno */
+        .bio-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
         .bio-content::-webkit-scrollbar { width: 3px; }
         .bio-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
         .bio-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
-        /* Footer dentro de la tarjeta */
         .card-footer {
             margin-top: 35px;
             font-size: 0.7rem;
@@ -156,23 +163,22 @@
             padding-top: 20px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 992px) {
-            /* En tablets y móviles, centramos la imagen y la tarjeta */
             .main-container { background-position: center center; }
             .content-card { margin-left: auto; margin-right: auto; padding: 30px 20px; }
         }
 
         @media (max-width: 768px) {
-            .header h1 { font-size: 1.7rem; letter-spacing: 6px; }
+            .header h1 { font-size: 1.7rem; letter-spacing: 6px; flex-wrap: wrap; }
+            .header h1 img { height: 25px; }
             .header p.subtitle { font-size: 0.75rem; letter-spacing: 2px; }
-            .bio-content { font-size: 0.85rem; max-height: 35vh; }
+            .bio-content { font-size: 0.85rem; max-height: 40vh; }
         }
 
         @media (max-height: 600px) {
             .header h1 { font-size: 1.4rem; }
             .social-links { margin-bottom: 15px; }
-            .bio-content { max-height: 20vh; }
+            .bio-content { max-height: 25vh; }
             .card-footer { margin-top: 15px; padding-top: 15px;}
         }
     </style>
@@ -180,9 +186,14 @@
 <body>
 
     <div class="main-container" id="scene">
-        <div class="overlay"></div> <div class="content-card">
+        <div class="overlay"></div>
+
+        <div class="content-card">
             <div class="header">
-                <h1>TONY CADE</h1>
+                <h1>
+                    TONY CADE 
+                    <img src="path/to/image_1.png" alt="CADE Logo">
+                </h1>
                 <p class="subtitle">DJ / PRODUCER / ARG</p>
             </div>
 
@@ -195,6 +206,7 @@
             <div class="bio-section">
                 <h2>about me</h2>
                 <div class="bio-content">
+                    <img src="path/to/image_0.png" alt="DJ Equipment">
                     <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos y groove marcado.</p>
                     <p>Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
                 </div>
@@ -209,18 +221,14 @@
     <script>
         const scene = document.getElementById('scene');
         
-        // Solo aplicar en dispositivos no táctiles (con mouse) y pantallas anchas
         if (window.matchMedia("(pointer: fine)").matches && window.innerWidth > 992) {
             scene.addEventListener('mousemove', function(e) {
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
                 
-                // Mueve el fondo muy suavemente en dirección opuesta (efecto depth)
-                // Usamos valores más bajos para no "romper" el centrado derecho
                 const moveX = (x - 0.5) * 10; 
                 const moveY = (y - 0.5) * 10;
                 
-                // Mantenemos el 'right' como base y sumamos el movimiento
                 scene.style.backgroundPosition = `calc(100% + ${moveX}px) calc(50% + ${moveY}px)`;
             });
         }
