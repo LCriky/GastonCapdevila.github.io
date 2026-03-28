@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #020202;
+            --bg-dark: #000000;
             --text-white: #ffffff;
-            --text-grey: #a0a0a0;
+            --text-grey: #b0b0b0;
             --accent: #ffffff;
         }
 
@@ -23,131 +23,126 @@
             background-color: var(--bg-dark);
             color: var(--text-white);
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            min-height: 100vh;
         }
 
-        /* FONDO DINÁMICO CON EL LOGO */
+        /* FONDO QUE OCUPA TODA LA PANTALLA */
         .page-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg/v1/fill/w_1905,h_909,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg') no-repeat center center;
-            background-size: cover;
-            opacity: 0.12; /* Toque muy sutil para textura */
-            z-index: -1;
-            filter: grayscale(100%);
+            z-index: -1; /* Asegura que esté por debajo de todo */
+        }
+
+        .page-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recorta y estira para llenar la pantalla */
+            opacity: 0.15; /* Sutil para no opacar el contenido principal */
+            filter: grayscale(100%) contrast(1.2);
         }
 
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* HEADER CON LOGO */
+        /* CABECERA */
         header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
-        .brand-logo {
-            width: 280px;
+        .header-logo {
+            width: 250px;
             height: auto;
-            filter: brightness(1.2);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        /* LAYOUT PRINCIPAL */
+        /* LAYOUT PERFIL */
         .profile-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        /* IMAGEN DE PERFIL */
-        .profile-img-box {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
+            gap: 80px;
+            align-items: start;
+            background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para leer mejor */
+            padding: 40px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
         }
 
         .profile-img-box img {
             width: 100%;
-            display: block;
-            transition: transform 0.6s ease;
-            filter: contrast(1.1) brightness(0.9);
+            border-radius: 2px;
+            filter: grayscale(20%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .profile-img-box:hover img {
-            transform: scale(1.02);
-        }
-
-        /* BIO TEXT */
+        /* TEXTO BIO */
         .bio-info h2 {
-            font-size: 0.8rem;
-            letter-spacing: 6px;
+            font-size: 0.75rem;
+            letter-spacing: 8px;
             text-transform: uppercase;
             color: var(--text-grey);
-            margin-bottom: 30px;
-            display: block;
+            margin-bottom: 40px;
         }
 
         .bio-info p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.8;
             font-weight: 300;
-            color: #d1d1d1;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
             text-align: justify;
         }
 
-        /* REDES SOCIALES ESTILO TEXTO */
+        /* SOCIAL LINKS */
         .social-nav {
-            margin-top: 40px;
+            margin-top: 50px;
             display: flex;
-            gap: 30px;
+            gap: 40px;
+            justify-content: flex-start;
         }
 
         .social-nav a {
             color: var(--text-white);
             text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 5px;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+            transition: 0.3s;
         }
 
         .social-nav a:hover {
-            color: var(--text-grey);
             border-bottom-color: var(--text-white);
-            transform: translateY(-2px);
+            letter-spacing: 5px;
         }
 
         /* FOOTER */
         footer {
-            margin-top: 100px;
-            padding: 40px 0;
+            margin-top: 80px;
+            padding: 60px 0;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-logo {
-            width: 120px;
-            opacity: 0.5;
-            margin-bottom: 20px;
+            width: 140px;
+            opacity: 0.4;
+            margin-bottom: 25px;
         }
 
         .copyright {
             font-size: 0.6rem;
-            letter-spacing: 4px;
-            color: #555;
+            letter-spacing: 5px;
+            color: #444;
             text-transform: uppercase;
         }
 
@@ -156,37 +151,32 @@
             .profile-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                padding: 20px;
             }
-            .bio-info {
-                order: 2;
-            }
-            .profile-img-box {
-                order: 1;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .social-nav {
-                justify-content: center;
-            }
+            .main-content { padding-top: 40px; }
+            .social-nav { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-bg"></div>
+    <div class="page-bg">
+        <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="Background">
+    </div>
 
     <main class="main-content">
         <header>
-            <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="Tony Cade Logo" class="brand-logo">
+            <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="Logo" class="header-logo" style="display:none;">
+            <h1 style="letter-spacing: 15px; font-weight: 700; text-transform: uppercase;">Tony Cade</h1>
         </header>
 
         <section class="profile-container">
             <div class="profile-img-box">
-                <img src="https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg" alt="Tony Cade Perfil">
+                <img src="https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg" alt="Tony Cade Profile">
             </div>
 
             <div class="bio-info">
-                <h2>About Me</h2>
+                <h2>Bio / Profile</h2>
                 <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos, groove marcado y una selección cuidada que conecta directamente con la pista. Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
                 <p>Influenciado por artistas como Mochakk, Wade y Latmun, Tony Cade construye sesiones dinámicas donde la progresión y la lectura del público son clave. Su identidad sonora se apoya en bajos potentes, percusiones precisas y transiciones fluidas que mantienen la tensión y el flow constante.</p>
                 <p>Con experiencia en eventos locales, busca consolidarse dentro de la escena electrónica, llevando su propuesta a nuevos espacios y audiencias, siempre con el objetivo de generar una experiencia auténtica y memorable en cada presentación.</p>
@@ -201,7 +191,7 @@
     </main>
 
     <footer>
-        <img src="https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg" alt="Logo Footer" class="footer-logo">
+        <img src="https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg" alt="Equipment Logo" class="footer-logo">
         <div class="copyright">Tony Cade &copy; 2026 | Rosario, ARG</div>
     </footer>
 
