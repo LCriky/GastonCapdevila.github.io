@@ -9,7 +9,7 @@
         :root {
             --bg-color: #000a12;
             --text-color: #ffffff;
-            --overlay-bg: rgba(0, 10, 18, 0.75);
+            --overlay-bg: rgba(0, 10, 18, 0.8);
         }
 
         * {
@@ -27,6 +27,7 @@
             overflow: hidden;
         }
 
+        /* Fondo principal (Imagen de Tony) */
         .main-container {
             position: relative;
             height: 100vh;
@@ -51,13 +52,14 @@
             z-index: 1;
         }
 
+        /* Tarjeta de contenido */
         .content-card {
             position: relative;
             z-index: 2;
             width: 90%;
-            max-width: 700px;
+            max-width: 600px;
             background: var(--overlay-bg);
-            padding: 40px;
+            padding: 35px;
             border-radius: 4px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -69,9 +71,9 @@
         }
 
         .header h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             text-transform: uppercase;
             margin-bottom: 5px;
             display: flex;
@@ -80,25 +82,28 @@
             gap: 15px;
         }
 
+        /* Logo CADE arriba */
         .header h1 img {
-            height: 30px;
+            height: 40px; /* Ajuste del logo enviado */
             width: auto;
+            filter: brightness(1.2);
         }
 
         .header p.subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 300;
             letter-spacing: 3px;
             color: #b0bec5;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
+        /* Redes Sociales Blancas */
         .social-links {
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .social-links a {
@@ -107,9 +112,9 @@
         }
 
         .social-links img {
-            width: 26px;
-            height: 26px;
-            filter: drop-shadow(0 0 0 white);
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1); /* Asegura que sean blancos */
         }
 
         .social-links a:hover {
@@ -118,68 +123,61 @@
         }
 
         .bio-section h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: lowercase;
             font-weight: 600;
             letter-spacing: 2px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #eceff1;
         }
 
         .bio-content {
-            font-size: 0.9rem;
-            line-height: 1.7;
+            font-size: 0.85rem;
+            line-height: 1.6;
             font-weight: 300;
             color: #cfd8dc;
-            max-height: 30vh;
+            max-height: 35vh;
             overflow-y: auto;
-            padding-right: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
+            padding-right: 5px;
+        }
+
+        /* Imagen de equipos dentro de la Bio */
+        .bio-image {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            margin-bottom: 15px;
+            opacity: 0.9;
         }
 
         .bio-content p {
-            margin-bottom: 0;
+            margin-bottom: 15px;
         }
 
-        .bio-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
-
+        /* Scrollbar discreto */
         .bio-content::-webkit-scrollbar { width: 3px; }
         .bio-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
         .bio-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
         .card-footer {
-            margin-top: 35px;
-            font-size: 0.7rem;
+            margin-top: 25px;
+            font-size: 0.65rem;
             letter-spacing: 5px;
             color: #78909c;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            padding-top: 15px;
         }
 
+        /* Responsive */
         @media (max-width: 992px) {
             .main-container { background-position: center center; }
-            .content-card { margin-left: auto; margin-right: auto; padding: 30px 20px; }
+            .content-card { margin-left: auto; margin-right: auto; padding: 25px 20px; }
         }
 
         @media (max-width: 768px) {
-            .header h1 { font-size: 1.7rem; letter-spacing: 6px; flex-wrap: wrap; }
-            .header h1 img { height: 25px; }
-            .header p.subtitle { font-size: 0.75rem; letter-spacing: 2px; }
-            .bio-content { font-size: 0.85rem; max-height: 40vh; }
-        }
-
-        @media (max-height: 600px) {
-            .header h1 { font-size: 1.4rem; }
-            .social-links { margin-bottom: 15px; }
-            .bio-content { max-height: 25vh; }
-            .card-footer { margin-top: 15px; padding-top: 15px;}
+            .header h1 { font-size: 1.5rem; letter-spacing: 4px; }
+            .header h1 img { height: 30px; }
+            .bio-content { max-height: 45vh; }
         }
     </style>
 </head>
@@ -191,24 +189,25 @@
         <div class="content-card">
             <div class="header">
                 <h1>
-                    TONY CADE 
-                    <img src="path/to/image_1.png" alt="CADE Logo">
+                    TONY 
+                    <img src="https://static.wixstatic.com/media/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg/v1/fill/w_1905,h_909,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8c50e6_d85a3a177ad747e48cc653714d7a9540~mv2.jpeg" alt="CADE Logo">
                 </h1>
                 <p class="subtitle">DJ / PRODUCER / ARG</p>
             </div>
 
             <div class="social-links">
-                <a href="https://www.instagram.com/tony_cade23/" target="_blank" title="Instagram"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
-                <a href="https://soundcloud.com/tonycade" target="_blank" title="SoundCloud"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
-                <a href="https://www.youtube.com/@TONYCADE23" target="_blank" title="YouTube"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
+                <a href="https://www.instagram.com/tony_cade23/" target="_blank"><img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram"></a>
+                <a href="https://soundcloud.com/tonycade" target="_blank"><img src="https://static.wixstatic.com/media/e3496b0865884e4ca74ea5377ed41068.png" alt="SoundCloud"></a>
+                <a href="https://www.youtube.com/@TONYCADE23" target="_blank"><img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"></a>
             </div>
 
             <div class="bio-section">
                 <h2>about me</h2>
                 <div class="bio-content">
-                    <img src="path/to/image_0.png" alt="DJ Equipment">
+                    <img src="https://static.wixstatic.com/media/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg/v1/fill/w_1280,h_459,al_c,q_85,enc_avif,quality_auto/8c50e6_8d32441714a44597b6c668590845605a~mv2.jpeg" alt="DJ Gear" class="bio-image">
+                    
                     <p>Tony Cade es un DJ/PRODUCTOR de Rosario enfocado en los sonidos del <strong>tech house y el techno</strong>, caracterizado por sets enérgicos y groove marcado.</p>
-                    <p>Su estilo combina ritmos contundentes con matices minimalistas, logrando un equilibrio entre lo underground y lo bailable.</p>
+                    <p>Su identidad sonora se apoya en bajos potentes y transiciones fluidas que mantienen la tensión y el flow constante en la pista.</p>
                 </div>
             </div>
 
@@ -220,15 +219,12 @@
 
     <script>
         const scene = document.getElementById('scene');
-        
         if (window.matchMedia("(pointer: fine)").matches && window.innerWidth > 992) {
             scene.addEventListener('mousemove', function(e) {
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
-                
-                const moveX = (x - 0.5) * 10; 
-                const moveY = (y - 0.5) * 10;
-                
+                const moveX = (x - 0.5) * 12; 
+                const moveY = (y - 0.5) * 12;
                 scene.style.backgroundPosition = `calc(100% + ${moveX}px) calc(50% + ${moveY}px)`;
             });
         }
