@@ -28,16 +28,36 @@
             gap: 20px;
             padding: 20px;
             background: rgba(0,0,0,0.8);
+            position: fixed; /* Mantiene la barra fija arriba, opcional */
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .social-header a {
+            display: inline-block; /* Necesario para que la transformación funcione */
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
         }
 
         .social-header img {
             width: 24px;
             height: 24px;
-            transition: transform 0.3s;
+            display: block; /* Elimina espacio inferior no deseado */
         }
 
-        .social-header img:hover {
-            transform: scale(1.2);
+        /* --- NUEVAS ANIMACIONES PARA LOS ENLACES (HOVER) --- */
+        
+        /* Efecto 1: Aumento de tamaño y brillo al pasar el mouse */
+        .social-header a:hover {
+            transform: scale(1.2) translateY(-5px); /* Agranda y sube un poco */
+            opacity: 0.8; /* Efecto de brillo/atenuación */
+            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); /* Sombra suave blanca */
+        }
+
+        /* Asegura una animación suave al quitar el mouse */
+        .social-header a:not(:hover) {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            filter: none;
         }
 
         /* Hero Section */
@@ -49,6 +69,7 @@
             justify-content: center;
             text-align: center;
             background: url('https://static.wixstatic.com/media/8c50e6_323db328bab94cec8c1111391259847d~mv2.jpg') no-repeat center center/cover;
+            padding-top: 60px; /* Compensa la barra fija */
         }
 
         .hero-content h1 {
@@ -116,6 +137,8 @@
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
             .about-section { padding: 40px 5%; }
+            .social-header { padding: 15px; gap: 15px; }
+            .social-header img { width: 20px; height: 20px; }
         }
     </style>
 </head>
